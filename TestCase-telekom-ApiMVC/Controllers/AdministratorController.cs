@@ -6,23 +6,10 @@ using System.Threading.Tasks;
 
 namespace TestCase_telekom_ApiMVC.Controllers
 {
-    public class AdministratorController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AdministratorController : Controller
     {
 
-        [HttpGet("/admin")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400)]
-        public string Admin()
-        {
-            return "Success";
-        }
-
-        [HttpGet("/admin/check-user")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400)]
-        public string CheckUser()
-        {
-            return "Success";
-        }
     }
 }

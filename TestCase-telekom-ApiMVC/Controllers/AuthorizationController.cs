@@ -34,20 +34,5 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(users);
         }
 
-        [HttpGet("/registration")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400)]
-        public string Register()
-        {
-            return "Success";
-        }
-
-        [HttpGet("/login")]
-        [ProducesResponseType(200,Type = typeof(string))]
-        [ProducesResponseType(400)]
-        public string Login()
-        {
-            return "Success";
-        }
     }
 }

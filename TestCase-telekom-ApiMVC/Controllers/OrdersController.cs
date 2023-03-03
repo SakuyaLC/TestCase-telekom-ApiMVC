@@ -50,12 +50,5 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(relationOrders);
         }
 
-        [HttpGet("/orders/1")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400)]
-        public string GetOrderInfo()
-        {
-            return "Success";
-        }
     }
 }
