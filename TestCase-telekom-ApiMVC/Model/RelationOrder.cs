@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TestCase_telekom_ApiMVC.Model
 {
-    public class Order
+    public class RelationOrder
     {
         [Required]
         [Key]
         public int order_id { get; set; }
-        public int user_id { get; set; }
-        public DateTime date { get; set; }
+        public int item_id { get; set; }
+        public int quantity { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,9 +8,11 @@ namespace TestCase_telekom_ApiMVC.Model
 {
     public class User
     {
-        private int user_id {get;set;}
-        private string user_name { get; set; }
-        private string user_email { get; set; }
-        private string user_passowrd { get; set; }
+        [Required]
+        [Key]
+        public int user_id {get;set;}
+        public string user_name { get; set; }
+        public string user_email { get; set; }
+        public string user_passowrd { get; set; }
     }
 }
