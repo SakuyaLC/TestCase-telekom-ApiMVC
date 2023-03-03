@@ -36,5 +36,25 @@ namespace TestCase_telekom_ApiMVC.Data
             return _context.relation_table_order.OrderBy(ro => ro.order_id).ToList();
         }
 
+        public bool Save()  
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UserExists(int id)
+        {
+            return _context.Users.Any(u => u.user_id == id);
+        }
+
+        public bool CreateUser(User user)
+        {
+
+            _context.Users.Add(user);
+
+            return Save();
+        }
+
     }
 }
+

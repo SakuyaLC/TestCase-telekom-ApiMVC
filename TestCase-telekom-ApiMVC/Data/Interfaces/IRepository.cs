@@ -12,5 +12,7 @@ namespace TestCase_telekom_ApiMVC.Data.Interfaces
         ICollection<Item> GetItems();
         ICollection<Order> GetOrders();
         ICollection<RelationOrder> GetRelationOrders();
+
+        bool CreateUser(User user);
     }
 }

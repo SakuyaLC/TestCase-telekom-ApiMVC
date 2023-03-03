@@ -34,5 +34,14 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(users);
         }
 
+        [HttpPost("/create-user")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUser([FromBody] User user)
+        {
+
+            return Ok(_repository.GetUsers().Where(u => u.user_id == user.user_id));
+        }
+
     }
 }
