@@ -30,7 +30,7 @@ namespace TestCase_telekom_ApiMVC
         {
             services.AddControllers();
             services.AddSwaggerGen();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }

@@ -6,7 +6,7 @@ using TestCase_telekom_ApiMVC.Model;
 
 namespace TestCase_telekom_ApiMVC.Data.Interfaces
 {
-    public interface IRepository
+    public interface IUserRepository
     {
         ICollection<User> GetUsers();
         ICollection<Item> GetItems();
@@ -18,5 +18,7 @@ namespace TestCase_telekom_ApiMVC.Data.Interfaces
         bool UserExists(string email);
 
         bool CreateUser(User user);
+
+        bool Authorize(string email, string password);
     }
 }

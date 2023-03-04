@@ -11,11 +11,11 @@ using System.IO;
 
 namespace TestCase_telekom_ApiMVC.Data
 {
-    public class Repository : IRepository
+    public class UserRepository : IUserRepository
     {
 
         private readonly DataContext _context;
-        public Repository(DataContext context)
+        public UserRepository(DataContext context)
         {
             _context = context; 
         }
@@ -101,6 +101,18 @@ namespace TestCase_telekom_ApiMVC.Data
                 }
             }
             return cipherText;
+        }
+
+        public bool Authorize(string email, string password)
+        {
+            password = Encrypt(password);
+
+            if (_context.Users.Any(u => u.user_email.Equals(email) && u.user_password.Equals(password)))
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

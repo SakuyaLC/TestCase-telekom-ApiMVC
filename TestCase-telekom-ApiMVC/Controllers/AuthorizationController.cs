@@ -12,9 +12,9 @@ namespace TestCase_telekom_ApiMVC.Controllers
     [ApiController]
     public class AuthorizationController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public AuthorizationController(IRepository repository)
+        public AuthorizationController(IUserRepository repository)
         {
             _repository = repository;
         }
@@ -40,15 +40,32 @@ namespace TestCase_telekom_ApiMVC.Controllers
         public IActionResult CreateUser([FromBody] User user)
         {
 
-            if (_repository.UserExists(user.user_email)) 
+            if (_repository.UserExists(user.user_email))
                 return BadRequest("Already exists");
             else
             {
                 _repository.CreateUser(user);
                 return Ok(_repository.GetUsers().Where(u => u.user_email == user.user_email));
             }
-                
+
         }
+
+        [HttpPost("/authorize")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult Authorize([FromBody] User user)
+        {
+
+            if (_repository.Authorize(user.user_email, user.user_password))
+                return Ok(_repository.GetUsers().Where(u => u.user_email == user.user_email));
+            else
+            {
+                return BadRequest("Incorrect email or password");
+            }
+
+        }
+
+
 
     }
 }
