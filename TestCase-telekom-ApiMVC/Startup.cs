@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestCase_telekom_ApiMVC.Data;
 using TestCase_telekom_ApiMVC.Data.Interfaces;
+using TestCase_telekom_ApiMVC.Data.Repositories;
 
 namespace TestCase_telekom_ApiMVC
 {
@@ -29,8 +30,13 @@ namespace TestCase_telekom_ApiMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen();
+
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
