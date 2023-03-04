@@ -13,6 +13,10 @@ namespace TestCase_telekom_ApiMVC.Data.Interfaces
         ICollection<Order> GetOrders();
         ICollection<RelationOrder> GetRelationOrders();
 
+        bool Save();
+
+        bool UserExists(string email);
+
         bool CreateUser(User user);
     }
 }

@@ -40,7 +40,14 @@ namespace TestCase_telekom_ApiMVC.Controllers
         public IActionResult CreateUser([FromBody] User user)
         {
 
-            return Ok(_repository.GetUsers().Where(u => u.user_id == user.user_id));
+            if (_repository.UserExists(user.user_email)) 
+                return BadRequest("Already exists");
+            else
+            {
+                _repository.CreateUser(user);
+                return Ok(_repository.GetUsers().Where(u => u.user_email == user.user_email));
+            }
+                
         }
 
     }

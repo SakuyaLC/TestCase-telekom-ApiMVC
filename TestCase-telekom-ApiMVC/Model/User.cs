@@ -13,6 +13,6 @@ namespace TestCase_telekom_ApiMVC.Model
         public int user_id {get;set;}
         public string user_name { get; set; }
         public string user_email { get; set; }
-        public string user_passowrd { get; set; }
+        public string user_password { get; set; }
     }
 }
