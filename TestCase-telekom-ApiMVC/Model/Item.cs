@@ -12,6 +12,6 @@ namespace TestCase_telekom_ApiMVC.Model
         [Key]
         public int item_id { get; set; }
         public string item_title { get; set; }
-        public float item_cost { get; set; }
+        public double item_cost { get; set; }
     }
 }

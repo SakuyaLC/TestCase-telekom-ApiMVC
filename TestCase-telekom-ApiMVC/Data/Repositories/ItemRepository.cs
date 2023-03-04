@@ -7,17 +7,17 @@ using TestCase_telekom_ApiMVC.Model;
 
 namespace TestCase_telekom_ApiMVC.Data.Repositories
 {
-    public class AdminRepository : IAdminRepository
+    public class ItemRepository : IItemRepository
     {
         private readonly DataContext _context;
-        public AdminRepository(DataContext context)
+        public ItemRepository(DataContext context)
         {
             _context = context;
         }
 
-        public User GetUser(int user_id)
+        public ICollection<Item> GetItems()
         {
-            return _context.Users.OrderBy(u => u.user_id == user_id).Single();
+            return _context.Items.OrderBy(o => o.item_id).ToList();
         }
     }
 }

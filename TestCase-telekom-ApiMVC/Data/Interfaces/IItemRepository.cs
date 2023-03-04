@@ -6,8 +6,8 @@ using TestCase_telekom_ApiMVC.Model;
 
 namespace TestCase_telekom_ApiMVC.Data.Interfaces
 {
-    public interface IAdminRepository
+    public interface IItemRepository
     {
-        public User GetUser(int user_id);
+        ICollection<Item> GetItems();
     }
 }

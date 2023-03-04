@@ -22,9 +22,8 @@ namespace TestCase_telekom_ApiMVC.Data.Repositories
 
         public ICollection<RelationOrder> GetRelationOrders()
         {
-            return _context.relation_table_order.OrderBy(ro => ro.order_id).ToList();
+            return _context.relation_table_orders.OrderBy(ro => ro.order_id).ToList();
         }
-
 
     }
 }

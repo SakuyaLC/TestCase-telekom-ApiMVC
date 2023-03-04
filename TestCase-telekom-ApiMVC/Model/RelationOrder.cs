@@ -10,6 +10,7 @@ namespace TestCase_telekom_ApiMVC.Model
     {
         [Required]
         [Key]
+        public int relation_order_id { get; set; }
         public int order_id { get; set; }
         public int item_id { get; set; }
         public int quantity { get; set; }

@@ -13,11 +13,13 @@ namespace TestCase_telekom_ApiMVC.Controllers
     public class OrdersController : Controller
     {
 
-        private readonly IOrderRepository _repository;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IItemRepository _itemRepository;
 
-        public OrdersController(IOrderRepository repository)
+        public OrdersController(IOrderRepository orderRepository, IItemRepository itemRepository)
         {
-            _repository = repository;
+            _orderRepository = orderRepository;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet("/orders")]
@@ -25,7 +27,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetOrders()
         {
-            var orders = _repository.GetOrders();
+            var orders = _orderRepository.GetOrders();
 
             if (!ModelState.IsValid)
             {
@@ -40,7 +42,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetRelationOrders()
         {
-            var relationOrders = _repository.GetRelationOrders();
+            var relationOrders = _orderRepository.GetRelationOrders();
 
             if (!ModelState.IsValid)
             {
@@ -50,5 +52,66 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(relationOrders);
         }
 
+        [HttpGet("/order-info/{order_id}")]
+        [ProducesResponseType(200, Type = typeof(ICollection<RelationOrder>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetOrderInfo(int order_id)
+        {
+            var relationOrders = _orderRepository.GetRelationOrders().Where(ro => ro.order_id == order_id);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(relationOrders);
+        }
+
+        [HttpGet("/orders/{user_id}")]
+        [ProducesResponseType(200, Type = typeof(ICollection<Order>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetOrdersForSpecifiedUser(int user_id)
+        {
+            List<OrderInfo> ordersInfo = new List<OrderInfo>();
+
+            List<Order> orders = _orderRepository.GetOrders().Where(o => o.user_id == user_id).ToList();
+
+            double cost = 0;
+            int quantity = 0;
+
+            foreach (Order order in orders)
+            {
+
+                List<RelationOrder> relationalOrders = _orderRepository.GetRelationOrders().Where(ro => ro.order_id == order.order_id).ToList();
+                foreach (RelationOrder relationOrder in relationalOrders)
+                {
+                    quantity += relationOrder.quantity;
+                    Item item = _itemRepository.GetItems().Where(i => i.item_id == relationOrder.item_id).Single();
+                    cost += (relationOrder.quantity*item.item_cost);
+                }
+
+                OrderInfo orderInfo = new OrderInfo()
+                {
+                    order_id = order.order_id,
+                    orderDate = order.date,
+                    orderCost = cost,
+                    itemsQuantity = quantity,
+                };
+
+                ordersInfo.Add(orderInfo);
+                cost = 0;
+                quantity = 0;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(ordersInfo);
+        }
+
+            
     }
+
 }

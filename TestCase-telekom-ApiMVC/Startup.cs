@@ -36,6 +36,7 @@ namespace TestCase_telekom_ApiMVC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
 
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
