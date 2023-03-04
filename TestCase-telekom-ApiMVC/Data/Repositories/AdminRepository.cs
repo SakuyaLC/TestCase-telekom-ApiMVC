@@ -17,7 +17,7 @@ namespace TestCase_telekom_ApiMVC.Data.Repositories
 
         public User GetUser(int user_id)
         {
-            return _context.Users.OrderBy(u => u.user_id == user_id).Single();
+            return _context.Users.Where(u => u.user_id == user_id).Single();
         }
     }
 }
