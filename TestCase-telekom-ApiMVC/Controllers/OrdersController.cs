@@ -13,9 +13,9 @@ namespace TestCase_telekom_ApiMVC.Controllers
     public class OrdersController : Controller
     {
 
-        private readonly IUserRepository _repository;
+        private readonly IOrderRepository _repository;
 
-        public OrdersController(IUserRepository repository)
+        public OrdersController(IOrderRepository repository)
         {
             _repository = repository;
         }

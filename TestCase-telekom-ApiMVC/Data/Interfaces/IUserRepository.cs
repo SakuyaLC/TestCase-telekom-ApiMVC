@@ -10,8 +10,6 @@ namespace TestCase_telekom_ApiMVC.Data.Interfaces
     {
         ICollection<User> GetUsers();
         ICollection<Item> GetItems();
-        ICollection<Order> GetOrders();
-        ICollection<RelationOrder> GetRelationOrders();
 
         bool Save();
 

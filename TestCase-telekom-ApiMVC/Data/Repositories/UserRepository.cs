@@ -30,16 +30,6 @@ namespace TestCase_telekom_ApiMVC.Data
             return _context.Items.OrderBy(i => i.item_id).ToList();
         }
 
-        public ICollection<Order> GetOrders()
-        {
-            return _context.Orders.OrderBy(o => o.order_id).ToList();
-        }
-
-        public ICollection<RelationOrder> GetRelationOrders()
-        {
-            return _context.relation_table_order.OrderBy(ro => ro.order_id).ToList();
-        }
-
         public bool Save()  
         {
             var saved = _context.SaveChanges();
