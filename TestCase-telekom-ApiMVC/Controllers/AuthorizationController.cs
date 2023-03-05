@@ -19,6 +19,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             _repository = repository;
         }
 
+        //Посмотреть всех пользователей
         [HttpGet("/get-users")]
         [ProducesResponseType(200, Type = typeof(ICollection<User>))]
         [ProducesResponseType(400)]
@@ -34,6 +35,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(users);
         }
 
+        //Создать пользователя (пароли шифруются)
         [HttpPost("/create-user")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -50,6 +52,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
 
         }
 
+        //Метод авторизации
         [HttpPost("/authorize")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

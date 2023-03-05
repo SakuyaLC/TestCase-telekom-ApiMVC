@@ -8,7 +8,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController
+    public class ItemsController : Controller
     {
     }
 }

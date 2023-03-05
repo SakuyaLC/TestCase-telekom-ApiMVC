@@ -26,6 +26,10 @@ namespace TestCase_telekom_ApiMVC.Controllers
             _itemRepository = itemRepository;
         }
 
+        /*
+         * Метод админа - посмотреть информацию о пользователе +
+         * Сколько у пользователя заказов и на какую общую сумму они вышли
+        */
         [HttpGet("/admin/get-user/{user_id}")]
         [ProducesResponseType(200, Type = typeof(ICollection<User>))]
         [ProducesResponseType(400)]

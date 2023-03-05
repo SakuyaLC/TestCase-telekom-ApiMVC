@@ -22,6 +22,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             _itemRepository = itemRepository;
         }
 
+        //Посмотреть все заказы
         [HttpGet("/orders")]
         [ProducesResponseType(200, Type = typeof(ICollection<Order>))]
         [ProducesResponseType(400)]
@@ -37,6 +38,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(orders);
         }
 
+        //Посмотреть все заказы из таблицы отношения
         [HttpGet("/orders-relation")]
         [ProducesResponseType(200, Type = typeof(ICollection<Order>))]
         [ProducesResponseType(400)]
@@ -52,6 +54,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(relationOrders);
         }
 
+        //Посмотреть детали определенного заказа
         [HttpGet("/order-info/{order_id}")]
         [ProducesResponseType(200, Type = typeof(ICollection<RelationOrder>))]
         [ProducesResponseType(400)]
@@ -67,6 +70,7 @@ namespace TestCase_telekom_ApiMVC.Controllers
             return Ok(relationOrders);
         }
 
+        //Посмотреть детали заказов определенного пользователя
         [HttpGet("/orders/{user_id}")]
         [ProducesResponseType(200, Type = typeof(ICollection<Order>))]
         [ProducesResponseType(400)]
